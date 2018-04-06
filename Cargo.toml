@@ -1,0 +1,6 @@
+[package]
+name = "segment-tree"
+version = "0.1.0"
+authors = ["Rodolfo Castillo Mateluna <rodolfocastillomateluna@gmail.com>"]
+
+[dependencies]
