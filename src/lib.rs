@@ -65,19 +65,19 @@ impl<T> SegmentTree<T>
 where
     T: Aggregator,
 {
-    fn query_helper(&self, n: usize, b: usize, e: usize, i: usize, j: usize, off: usize) -> T {
+    fn query_helper(&self, n: usize, b: usize, e: usize, i: usize, j: usize) -> T {
         if e < i || b > j {
             return Default::default();
         }
         if b >= i && e <= j {
             return self.tree[n].clone();
         }
-        self.query_helper(n * 2, b, mid!(b, e), i, j, off)
-            .aggregate(self.query_helper(n * 2 + 1, mid!(b, e) + 1, e, i, j, off))
+        self.query_helper(n * 2, b, mid!(b, e), i, j)
+            .aggregate(self.query_helper(n * 2 + 1, mid!(b, e) + 1, e, i, j))
     }
 
     pub fn query(&self, i: usize, j: usize) -> T {
-        self.query_helper(1, 0, self.n - 1, i, j, 0)
+        self.query_helper(1, 0, self.n - 1, i, j)
     }
 }
 
